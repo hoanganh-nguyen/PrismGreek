@@ -7,8 +7,33 @@
         xmlns:prism ="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         mc:Ignorable="d"
-        Title="{Binding ViewName}" Height="300" Width="300">
+        Title="{Binding ViewName}" Height="450" Width="300">
+
     <Grid>
-        <TextBlock Text="View Base" Foreground="Aquamarine" FontSize="30"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="146*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <Menu IsMainMenu="True" Grid.Row="0" Background="Azure" Margin="0,2,0,0.4" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="Auto">
+            <MenuItem Header="_Home"/>
+            <MenuItem Header="Student" Command="{Binding NavigateCommand}" CommandParameter="StudentView"/>
+            <MenuItem Header="Course"/>
+            <MenuItem Header="Cont"/>
+        </Menu>
+        <ContentControl prism:RegionManager.RegionName="ToolbarRegion" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0.2,-0.4,246.8" Grid.RowSpan="2"/>
+        <ContentControl prism:RegionManager.RegionName="ListRegion" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0.2,-0.4,24.6" Grid.RowSpan="2"/>
+        <TabControl prism:RegionManager.RegionName="DetailRegion" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0.2,-0.4,24.6" Grid.RowSpan="2"/>
+        <StatusBar Grid.Row="3" Margin="0,0.2,0,-0.4">
+            <StatusBarItem VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <TextBlock Text="{Binding Status}"/>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>
